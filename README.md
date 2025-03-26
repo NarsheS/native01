@@ -50,11 +50,7 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 # native01
 
-git push -u origin main
 Protótipo simples do meetingApp para missão pratica 01.
 
-![Screenshot_20250325_154310_Expo Go](https://github.com/user-attachments/assets/eee7feea-b4fd-4b8f-afd2-274a66eb809d)
-![Screenshot_20250325_154257_Expo Go](https://github.com/user-attachments/assets/4d604029-af8b-48fb-87e4-54cba3739cad)
-![Screenshot_20250325_154246_Expo Go](https://github.com/user-attachments/assets/d34009a2-14da-47ab-8713-4247a30becf1)
-![Screenshot_20250325_154058_Expo Go](https://github.com/user-attachments/assets/d49a5ece-a037-4e89-a0d3-5ffd5d5e5c68)
+Vou deixar um PDF com imagens do app.
 
