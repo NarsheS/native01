@@ -83,7 +83,18 @@ const ListaFornecedores = () => {
       setImageLoaded(false);
       setImageError(false);
     }}>
-      <Text>{item.name}</Text>
+      {item.imageURI ? (
+        <Image source={{ uri: item.imageURI }} style={styles.personaImage} />
+      ) : (
+        <View style={styles.ImagePlaceholder}>
+          <Text>Sem imagem</Text>
+        </View>
+      )}
+      <View style={styles.itemsUser}>
+        <Text><Text style={styles.boldness}>Nome:</Text> {item.name}</Text>
+        <Text><Text style={styles.boldness}>Endereço:</Text> {item.address}</Text>
+        <Text><Text style={styles.boldness}>Contato:</Text> {item.contact}</Text>
+      </View>
     </TouchableOpacity>
   );
 
@@ -205,9 +216,9 @@ const ListaFornecedores = () => {
                       </View>
                     )}
                     <Text style={styles.modalTitle}>{selectedPersona.name}</Text>
-                    <Text>Endereço: {selectedPersona.address}</Text>
-                    <Text>Contato: {selectedPersona.contact}</Text>
-                    <Text>Categorias: {selectedPersona.category.map(cat => cat.name).join(', ')}</Text>
+                    <Text style={styles.textChildModal}><Text style={styles.boldness}>Endereço:</Text> {selectedPersona.address}</Text>
+                    <Text style={styles.textChildModal}><Text style={styles.boldness}>Contato:</Text> {selectedPersona.contact}</Text>
+                    <Text style={styles.textChildModal}><Text style={styles.boldness}>Categorias:</Text> {selectedPersona.category.map(cat => cat.name).join(', ')}</Text>
                     
                       <TouchableOpacity style={styles.modalButton} onPress={handleEditPersona}>
                         <Text>Editar</Text>
@@ -260,9 +271,18 @@ const styles = StyleSheet.create({
     borderColor: '#008080',
   },
   personaItem: {
+    flex: 1,
+    flexDirection: 'row',
+    gap: 2,
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+  },
+  ImagePlaceholder: {
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   personaImage: {
     width: 100,
@@ -272,12 +292,17 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: "center",
     gap: 8,
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  textChildModal: {
+    fontSize: 18,
   },
   modalCloseButton: {
     padding: 10,
@@ -313,6 +338,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#ccc',
     width: '80%'
+  },
+  itemsUser: {
+    margin: 15,
+    gap: 3
+  },
+  boldness: {
+    fontWeight: 'bold',
   }
 });
 

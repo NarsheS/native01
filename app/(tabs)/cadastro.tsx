@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet, View, Alert, Platform } from "react-native";
+import { Button, StyleSheet, View, Alert, Platform, ScrollView } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import CategorySelector from "../../components/CategorySelector";
@@ -38,7 +38,7 @@ export default function Cadastro() {
 
   async function submitForm() {
     if (name !== "" && address !== "" && contact !== "") {
-      const id = Date.now().toString(); // Generate a unique ID
+      const id = Date.now().toString(); 
       const user = new Persona(id, name, address, contact, selectedCategories, imageURI);
       try {
         await AsyncStorage.setItem(`persona_${id}`, JSON.stringify(user));
@@ -57,43 +57,45 @@ export default function Cadastro() {
   return (
     <SafeAreaProvider style={{backgroundColor:"white"}}>
       <SafeAreaView>
-        <ThemedText style={styles.title}>Cadastro de Fornecedor:</ThemedText>
-        <TextInput
-          style={styles.input}
-          onChangeText={setName}
-          value={name}
-          placeholder="nome"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setAddress}
-          value={address}
-          placeholder="endereço"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setContact}
-          value={contact}
-          placeholder="contato"
-        />
-        <View style={styles.categoryContainer}>
-          <CategorySelector
-            categories={categories}
-            selectedCategories={selectedCategories}
-            onSelect={setSelectedCategories}
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          <ThemedText style={styles.title}>Cadastro de Fornecedor:</ThemedText>
+          <TextInput
+            style={styles.input}
+            onChangeText={setName}
+            value={name}
+            placeholder="nome"
           />
-        </View>
-        <View style={styles.container}>
-          <ImagePickerExample setImageURI={setImageURI} imageURI={imageURI} />
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={submitForm}
-              title="Cadastrar"
-              color="#008080"
-              accessibilityLabel="Cadastrar"
+          <TextInput
+            style={styles.input}
+            onChangeText={setAddress}
+            value={address}
+            placeholder="endereço"
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={setContact}
+            value={contact}
+            placeholder="contato"
+          />
+          <View style={styles.categoryContainer}>
+            <CategorySelector
+              categories={categories}
+              selectedCategories={selectedCategories}
+              onSelect={setSelectedCategories}
             />
           </View>
-        </View>
+          <View style={styles.container}>
+            <ImagePickerExample setImageURI={setImageURI} imageURI={imageURI} />
+            <View style={styles.buttonContainer}>
+              <Button
+                onPress={submitForm}
+                title="Cadastrar"
+                color="#008080"
+                accessibilityLabel="Cadastrar"
+              />
+            </View>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -124,4 +126,8 @@ const styles = StyleSheet.create({
   categoryContainer: {
     margin: 12,
   },
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingBottom: 20,
+  }
 });
